@@ -22,7 +22,7 @@
             ?><script>alert('Проверьте правильность ввода логина и пароля')</script><?php
         }
         else{
-            header('Location: /auto/index.php');
+            header('Location: /auto/indeex.php');
         }
     } 
 ?>

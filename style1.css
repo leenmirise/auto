@@ -1,8 +1,80 @@
 *{
     margin: 0 auto;
-    background-color: rgb(255, 196, 255);
+    
+    background-image: url('images/fon.png');
 }
 img{
     height: 20px;
     width: 20px;
+}
+label{
+    color: white;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
+}
+td{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a:hover{
+    color: palevioletred;
+}
+
+.nnn{
+    font-size: 20px;
+    color: rgb(248, 205, 241);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.vvod{
+    margin-bottom: 50px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.in{
+    margin-bottom: 20px;
+    color: white;
+    border: 3px solid white;
+    border-radius: 25px;
+    padding: 15px 10px 15px 10px;
+    height: 20px;
+    width: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main{
+    width: 70%;
+    margin: 0 auto;
+}
+.btn{
+    border: 3px solid white;
+    border-radius: 25px;
+    width: 100px;
+    height: 50px;
+    padding: 5px 5px 5px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    margin-bottom: 20px;
+}
+.btn:hover{
+    color: rgb(248, 205, 241);
+}
+.iz{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }

@@ -20,28 +20,32 @@ $res = mysqli_query($con, $s);
             <input type="text" name="delo" id="delo" class="in" required>
             <input type="submit" name="send" class="btn" value="Принять">
         </div>
-    </form>
 
-    <table border = 1>
+        <table border = 1>
         <tr>
-            <td> Номер</td>
-            <td> Дело</td>
-            <td> Изменить</td>
-            <td> Удалить</td>
+            <td class="nnn"> Номер</td>
+            <td class="nnn"> Дело</td>
+            <td class="nnn"> Удалить</td>
+            <td class="nnn"> Изменить</td>
         </tr>
     <?php
 
         while($row = mysqli_fetch_row($res))
         {
             print("<tr>");
-            print("<td>$row[0]</td>");
-            print("<td>$row[1]</td>");
-            print("<td><a href='delete.php?id=".$row[0]."'>delete</td>");
-            print("<td><a href='update.php?id=".$row[0]."'>update</td>");
+            print("<td >$row[0]</td>");
+            print("<td >$row[1]</td>");
+            print("<td ><a href='delete.php?id=".$row[0]."'><img src='images/delete.png'></td>");
+            print("<td ><a href='update.php?id=".$row[0]."'><img src='images/pen.png'></td>");
             print("</tr>");
         }
 
     ?>
+
+
+    </form>
+
+    
 
 </main>
 

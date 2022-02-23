@@ -11,11 +11,11 @@ $con = mysqli_connect($host, $user, $pass) or die ("no connection");
 mysqli_select_db($con, $db) or die("no db"); 
 
 
-if(isset($_REQUEST["target_id"])){
+if(isset($_REQUEST['target_id'])){
 
 if(isset($_REQUEST['send']))
 {
-    $target_id = $_REQUEST["target_id"];
+    $target_id = $_REQUEST['target_id'];
     $name=$_REQUEST['delo'];
     $s = "UPDATE `delo` SET `name`='$name' WHERE `id` = ".$target_id;
     print($s);
@@ -33,10 +33,13 @@ if (isset($_REQUEST['id']))
     $asd = mysqli_fetch_row($res);
 
     print("<form>");
+    print('<div class="iz">');
     print("<label>Название</label>");
-    print('<input type="text" name="target_id" value="'.$asd[1].'">');
+    print('<input hidden type="text" name="target_id" value="'.$id.'" >');
+    print('<input type="text" class="in" name="delo" value="'.$asd[1].'">');
     print('<input type="submit" value="Принять" name="send" class="btn">');
     print('<input type="submit" value="Отмена" name="cancel" class="btn">');
+    print('</div>');
     print("</form>");
 }
 
