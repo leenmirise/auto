@@ -39,6 +39,11 @@
 </html>
 
 <?php
+    session_start();
+    if(!empty($_SESSION["name"]))
+    {
+        header('Location: /auto/indeex.php');
+    }
     if(isset($_GET['send'])){
         require('bd1.php');
 
@@ -52,15 +57,16 @@
 
             $s="INSERT INTO `users`(`id`, `username`, `password`) VALUES (NULL,'$name','$pass')";
             mysqli_query($con, $s) or die("ddd");
+
+            $_SESSION["login"] = $users["username"];
+            $_SESSION["password"] = $users["password"];
     
             header('Location: /auto/enter.php');
         }
         else{
-            
             print('<div class="nepr">');
             print('<p> Проверьте правильность ввода логина и пароля </p>');
             print('</div>');
-            
         }
     }
 ?>

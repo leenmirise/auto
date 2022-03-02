@@ -3,11 +3,27 @@
 require('bd2.php');
 $s = "select * from delo";
 $res = mysqli_query($con, $s);
+
+
+    session_start();
+    if (!empty($_SESSION["name"]))
+    {
+        if(isset($_REQUEST['sub_exit']))
+        {
+            print("aa");
+            session_unset();
+            session_destroy();
+            Header("Location:enter.php");
+        }
+
 ?>
 
 
 <main>
     <form>
+        <div class="exit">
+            <input type="submit" name="sub_exit" class="btn" value="Выйти">
+        </div>
         <div class="vvod">
             <label for="delo">Введите новое дело:</label>
             <input type="text" name="delo" id="delo" class="in" required>
@@ -37,6 +53,10 @@ $res = mysqli_query($con, $s);
 </main>
 
 <?php
+    }
+    else{
+        Header("Location: enter.php");
+    }
     if(isset($_GET['send'])){
         $delo=$_REQUEST['delo'];
 

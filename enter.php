@@ -36,6 +36,12 @@
 
 
 <?php
+    session_start();
+    if(!empty($_SESSION["name"]))
+    {
+        header('Location: /auto/indeex.php');
+    }
+
     if(isset($_POST['send2'])){
         require('bd1.php');
 
@@ -49,6 +55,8 @@
             print('</div>');
         }
         else{
+            $_SESSION["name"] = $users["username"];
+            $_SESSION["pass"] = $users["password"];
             header('Location: /auto/indeex.php');
         }
     } 
