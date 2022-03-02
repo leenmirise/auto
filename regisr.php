@@ -1,32 +1,4 @@
-<?php
-    if(isset($_GET['send'])){
-        require('bd1.php');
 
-        $a = "select * from `users` where `username`='".$_REQUEST['username']."'";
-        $res = mysqli_query($con, $a);
-        $user1 = mysqli_fetch_assoc($res);
-
-        if(empty($user1)){
-            $name=$_REQUEST['username'];
-            $pass=$_REQUEST['pass'];
-
-            $s="INSERT INTO `users`(`id`, `username`, `password`) VALUES (NULL,'$name','$pass')";
-            mysqli_query($con, $s) or die("ddd");
-    
-            header('Location: /auto/enter.php');
-        }
-        else{
-            ?><script>alert('Пользователь с таким именем пользователя уже существует')</script><?php
-            
-            //header('Location: /auto/regisr.php');
-            
-        }
-
-        
-    }
-
-
-?>
 
 
 
@@ -65,3 +37,30 @@
     </footer>
 </body>
 </html>
+
+<?php
+    if(isset($_GET['send'])){
+        require('bd1.php');
+
+        $a = "select * from `users` where `username`='".$_REQUEST['username']."'";
+        $res = mysqli_query($con, $a);
+        $user1 = mysqli_fetch_assoc($res);
+
+        if(empty($user1)){
+            $name=$_REQUEST['username'];
+            $pass=$_REQUEST['pass'];
+
+            $s="INSERT INTO `users`(`id`, `username`, `password`) VALUES (NULL,'$name','$pass')";
+            mysqli_query($con, $s) or die("ddd");
+    
+            header('Location: /auto/enter.php');
+        }
+        else{
+            
+            print('<div class="nepr">');
+            print('<p> Проверьте правильность ввода логина и пароля </p>');
+            print('</div>');
+            
+        }
+    }
+?>
