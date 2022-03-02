@@ -1,31 +1,4 @@
 
-<?php
-    if(isset($_GET['send'])){
-        header('Location: /auto/regisr.php');
-    }  
-    
-    if(isset($_GET['send2'])){
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $db = "users";
-
-        $con = mysqli_connect($host, $user, $pass) or die ("error con");
-        mysqli_select_db($con, $db) or die ("error db");
-
-
-        $a = "select * from `users` where `username`='".$_REQUEST['name']."' and `password`='".$_REQUEST['pass']."'";
-        $res = mysqli_query($con, $a);
-        $user = mysqli_fetch_assoc($res);
-
-        if(empty($user)){
-            ?><script>alert('Проверьте правильность ввода логина и пароля')</script><?php
-        }
-        else{
-            header('Location: /auto/indeex.php');
-        }
-    } 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,28 +11,45 @@
 </head>
 <body>
     <header>
-
+        <a href="regisr.php">Регистрация на сайте</a>
     </header>
     <nav>
-
+        
     </nav>
     <main>
-        <form action="#">
+        <form method="post">
             <div class="vvod">
-                <label for="name">Username:</label>
-                <input type="text" id="name" placeholder="Enter your user name" class="in" name="name">
-                <label for="pass">Password:</label>
-                <input type="password" id="pass" placeholder="Enter your password" class="in" name="pass">
+                <label for="name">Логин:</label>
+                <input type="text" id="name" placeholder="Введите свой логин" class="in" name="name" required>
+                <label for="pass">Пароль:</label>
+                <input type="password" id="pass" placeholder="Введите свой пароль" class="in" name="pass" required>
             </div>
             <div class="buttons">
                 <input type="submit" value="Вход" class="bt" name="send2">
-                <input type="submit" value="Регистрация" class="bt" name="send"> 
             </div>
         </form>
     </main>
     <footer>
-
     </footer>
 </body>
 </html>
 
+
+<?php
+    if(isset($_POST['send2'])){
+        require('bd1.php');
+
+        $a = "select * from `users` where `username`='".$_REQUEST['name']."' and `password`='".$_REQUEST['pass']."'";
+        $res = mysqli_query($con, $a);
+        $user1 = mysqli_fetch_assoc($res);
+
+        if(empty($user1)){
+            print('<div class="nepr">');
+            print('<p> Проверьте правильность ввода логина и пароля </p>');
+            print('</div>');
+        }
+        else{
+            header('Location: /auto/indeex.php');
+        }
+    } 
+?>

@@ -1,19 +1,12 @@
 <?php
     if(isset($_GET['send'])){
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $db = "users";
-
-        $con = mysqli_connect($host, $user, $pass) or die ("error con");
-        mysqli_select_db($con, $db) or die ("error db");
-
+        require('bd1.php');
 
         $a = "select * from `users` where `username`='".$_REQUEST['username']."'";
         $res = mysqli_query($con, $a);
-        $user = mysqli_fetch_assoc($res);
+        $user1 = mysqli_fetch_assoc($res);
 
-        if(empty($user)){
+        if(empty($user1)){
             $name=$_REQUEST['username'];
             $pass=$_REQUEST['pass'];
 
@@ -48,7 +41,7 @@
 </head>
 <body>
     <header>
-        <a href="enter.php">Sign in</a>
+        <a href="enter.php">Вход на сайт</a>
     </header>
     <nav>
 

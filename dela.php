@@ -1,15 +1,8 @@
 <?php
 
-$host="localhost";
-$user="root";
-$pass="";
-$db="delo";
-
-$con = mysqli_connect($host, $user, $pass) or die ("no connection");
-mysqli_select_db($con, $db) or die ("no db");
+require('bd2.php');
 $s = "select * from delo";
 $res = mysqli_query($con, $s);
-
 ?>
 
 
@@ -20,7 +13,7 @@ $res = mysqli_query($con, $s);
             <input type="text" name="delo" id="delo" class="in" required>
             <input type="submit" name="send" class="btn" value="Принять">
         </div>
-
+        
         <table border = 1>
         <tr>
             <td class="nnn"> Номер</td>
@@ -29,7 +22,6 @@ $res = mysqli_query($con, $s);
             <td class="nnn"> Изменить</td>
         </tr>
     <?php
-
         while($row = mysqli_fetch_row($res))
         {
             print("<tr>");
@@ -41,12 +33,7 @@ $res = mysqli_query($con, $s);
         }
 
     ?>
-
-
     </form>
-
-    
-
 </main>
 
 <?php
