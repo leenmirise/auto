@@ -55,8 +55,8 @@
             print('</div>');
         }
         else{
-            $_SESSION["name"] = $users["username"];
-            $_SESSION["pass"] = $users["password"];
+            $_SESSION["name"] = $user1["username"];
+            $_SESSION["pass"] = $user1["pass"];
             header('Location: /auto/indeex.php');
         }
     } 

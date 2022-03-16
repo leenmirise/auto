@@ -5,16 +5,15 @@ $s = "select * from delo";
 $res = mysqli_query($con, $s);
 
 
-    session_start();
-    if (!empty($_SESSION["name"]))
+session_start();
+if (!empty($_SESSION["name"]))
+{
+    if(isset($_REQUEST['sub_exit']))
     {
-        if(isset($_REQUEST['sub_exit']))
-        {
-            print("aa");
-            session_unset();
-            session_destroy();
-            Header("Location:enter.php");
-        }
+        session_unset();
+        session_destroy();
+        Header("Location:enter.php");
+    }
 
 ?>
 
@@ -26,7 +25,7 @@ $res = mysqli_query($con, $s);
         </div>
         <div class="vvod">
             <label for="delo">Введите новое дело:</label>
-            <input type="text" name="delo" id="delo" class="in" required>
+            <input type="text" name="delo" id="delo" class="in" >
             <input type="submit" name="send" class="btn" value="Принять">
         </div>
         
@@ -56,6 +55,7 @@ $res = mysqli_query($con, $s);
     }
     else{
         Header("Location: enter.php");
+        print('aaa');
     }
     if(isset($_GET['send'])){
         $delo=$_REQUEST['delo'];

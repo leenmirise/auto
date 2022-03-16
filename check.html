@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="/auto/script.js"></script>-->
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body  class="light" id="body">
+    <header>
+        <input type="button" onclick="change_theme()" class="bt" value="Изменить тему">
+    </header>
+    <main>
+        <form action="javascript:reg()" method="GET" name="registr">
+            <div class="vvod">
+                <label for="name">Логин:</label>
+                <input type="text" id="name" placeholder="Введите свой логин" class="in" name="name" required>
+                <label for="pass">Пароль:</label>
+                <input type="password" id="pass" placeholder="Введите свой пароль" class="in" name="pass" required>
+                <label for="add">Адрес:</label>
+                <input type="text" id="add" placeholder="Введите свой адрес" class="in" name="add" required>
+                <label for="mailing">Подписаться на рассылку</label>
+                <input type="checkbox" id="mailing" name="mailing" value="mailing_true" checked> 
+                <p class="text">Пол:</p>
+                <label for="gender_m"><input type="radio" id="gender_m" name="gender" value="m" checked>Мужской</label>
+                <label for="gender_w"><input type="radio" id="gender_w" name="gender" value="w" >Женский</label>
+                <select name="city">Укажите свой город
+                    <option value="Dubna">Дубна</option>
+                    <option value="Moskva">Москва</option>
+                    <option value="Piter">Санкт-Петербург</option>
+                    <option value="Kazan">Казань</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <input type="submit" value="Отправить данные" class="htt" name="send2" onclick="check_info()">
+                <!--<input type="submit" value="Сбросить" class="bt" name="send">-->
+            </div>
+            <!--<div class="dz">
+                <input value="Тык" onclick="alert('Вы удачно тыкнули')" type="button">
+                <input id="elem" type="button" value="Тык2">
+                <p id="pr">Пример</p>
+                <input type="button" id="element" value="Тык3">
+            </div>-->
+            
+        </form>
+    </main>
+</body>
+</html>
+<script>
+    elem.onclick=function(){
+        alert("Тык номер 2 успешен");
+    }
+
+    let pr = document.getElementById('pr');
+    pr.style.background='pink';
+
+    let element = document.getElementById('element');
+    element.addEventListener(event, handler);
+
+    function handler(){
+        alert('Тык');
+    }
+
+    element.addEventListener("click", handler);
+
+    function change_theme(){
+        if(document.body.classList.contains("dark")){
+            document.body.classList.remove("dark")
+            document.body.classList.add("light")
+        }
+        else{
+            document.body.classList.remove("light")
+            document.body.classList.add("dark")
+        }
+        //document.body.classList.toggle("light");
+    }
+
+    function check_info(){
+        var f = document.getElementById("name");
+        if(f.value.length < 3) {
+            document.getElementById("name").classList.remove("in");
+            document.getElementById("name").classList.add("error");
+            //alert('Логин должен состоять не менее чем из трех символов');
+        }
+        else{
+            document.getElementById("name").classList.remove("error");
+            document.getElementById("name").classList.add("in");
+        }
+        var f = document.getElementById("pass");
+        if(f.value.length < 3) {
+            document.getElementById("pass").classList.remove("in");
+            document.getElementById("pass").classList.add("error");
+            //alert('Логин должен состоять не менее чем из трех символов');
+        }
+        else{
+            document.getElementById("pass").classList.remove("error");
+            document.getElementById("pass").classList.add("in");
+        }
+
+    }
+</script>
+
+
