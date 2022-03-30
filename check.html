@@ -8,7 +8,7 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>Document</title>
 </head>
-<body  class="light" id="body">
+<body id="body" class="light" onload="Theme()">
     <header>
         <input type="button" onclick="change_theme()" class="bt" value="Изменить тему">
     </header>
@@ -16,7 +16,7 @@
         <form action="javascript:reg()" method="GET" name="registr">
             <div class="vvod">
                 <label for="name">Логин:</label>
-                <input type="text" id="name" placeholder="Введите свой логин" class="in" name="name" required>
+                <input type="text" id="name" placeholder="Введите свой логин" class="in" name="name" onchange="ls()" required>
                 <label for="pass">Пароль:</label>
                 <input type="password" id="pass" placeholder="Введите свой пароль" class="in" name="pass" required>
                 <label for="add">Адрес:</label>
@@ -49,40 +49,50 @@
 </body>
 </html>
 <script>
-    elem.onclick=function(){
-        alert("Тык номер 2 успешен");
-    }
+    // elem.onclick=function(){
+    //     alert("Тык номер 2 успешен");
+    // }
 
-    let pr = document.getElementById('pr');
-    pr.style.background='pink';
+    // let pr = document.getElementById('pr');
+    // pr.style.background='pink';
 
-    let element = document.getElementById('element');
-    element.addEventListener(event, handler);
+    // let element = document.getElementById('element');
+    // element.addEventListener(event, handler);
 
-    function handler(){
-        alert('Тык');
-    }
+    // function handler(){
+    //     alert('Тык');
+    // }
 
-    element.addEventListener("click", handler);
+    // element.addEventListener("click", handler);
 
     function change_theme(){
         if(document.body.classList.contains("dark")){
             document.body.classList.remove("dark")
             document.body.classList.add("light")
+            setCookie('color', 'light');
         }
         else{
             document.body.classList.remove("light")
             document.body.classList.add("dark")
+            setCookie('color', 'dark');
         }
         //document.body.classList.toggle("light");
+        
     }
 
     function check_info(){
+        // if(input.value.length < 3) {
+        //     input.classList.remove("in");
+        //    input.classList.add("error");
+        // }
+        // else{
+        //    input.classList.remove("error");
+        //    input.classList.add("in");
+        //}
         var f = document.getElementById("name");
         if(f.value.length < 3) {
             document.getElementById("name").classList.remove("in");
             document.getElementById("name").classList.add("error");
-            //alert('Логин должен состоять не менее чем из трех символов');
         }
         else{
             document.getElementById("name").classList.remove("error");
@@ -92,7 +102,6 @@
         if(f.value.length < 3) {
             document.getElementById("pass").classList.remove("in");
             document.getElementById("pass").classList.add("error");
-            //alert('Логин должен состоять не менее чем из трех символов');
         }
         else{
             document.getElementById("pass").classList.remove("error");
@@ -100,6 +109,59 @@
         }
 
     }
+
+    function getCookie(name) {
+        let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    function setCookie(name, value, options = {}) {
+
+        options = {
+        path: '/',
+        ...options
+        };
+
+        if (options.expires instanceof Date) {
+            options.expires = options.expires.toUTCString();
+        }
+
+        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+        for (let optionKey in options) {
+            updatedCookie += "; " + optionKey;
+            let optionValue = options[optionKey];
+            if (optionValue !== true) {
+                updatedCookie += "=" + optionValue;
+            }
+        }
+
+        document.cookie = updatedCookie;
+    }
+
+    function Theme(){
+        if(getCookie('color') == 'dark') {
+            setCookie('color', 'dark');
+            change_theme();
+        }
+        else if(getCookie('color') == 'light'){
+            setCookie('color', 'light');
+        }
+    }
+
+    a1 = document.getElementById('name');
+    function ls(){
+        a1 = document.getElementById('name');
+        localStorage.setItem(a1.id, a1.value);
+    }
+    function CheckStorage(){
+        a1.value = localStorage.getItem(a1.id)
+    }
+    CheckStorage();
+
+
 </script>
 
 

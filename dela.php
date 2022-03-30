@@ -1,11 +1,14 @@
 <?php
-
-require('bd2.php');
-$s = "select * from delo";
-$res = mysqli_query($con, $s);
-
-
 session_start();
+require('bd2.php');
+$id=$_SESSION["id"];
+$s1 = "select * from delo where `id_user` = $id and `stage` like 'Сделано'";
+$s2 = "select * from delo where `id_user` = $id and `stage` like 'В процессе'";
+$s3 = "select * from delo where `id_user` = $id and `stage` like 'В планах'";
+$res1 = mysqli_query($con, $s1);
+$res2 = mysqli_query($con, $s2);
+$res3 = mysqli_query($con, $s3);
+
 if (!empty($_SESSION["name"]))
 {
     if(isset($_REQUEST['sub_exit']))
@@ -23,27 +26,66 @@ if (!empty($_SESSION["name"]))
         <div class="exit">
             <input type="submit" name="sub_exit" class="btn" value="Выйти">
         </div>
-        <div class="vvod">
-            <label for="delo">Введите новое дело:</label>
-            <input type="text" name="delo" id="delo" class="in" >
-            <input type="submit" name="send" class="btn" value="Принять">
-        </div>
-        
         <table border = 1>
         <tr>
-            <td class="nnn"> Номер</td>
+            <td class="nnn" hidden> Номер</td>
             <td class="nnn"> Дело</td>
             <td class="nnn"> Удалить</td>
             <td class="nnn"> Изменить</td>
+            <td class="nnn"> Категория</td>
         </tr>
     <?php
-        while($row = mysqli_fetch_row($res))
+        while($row = mysqli_fetch_row($res1))
         {
             print("<tr>");
-            print("<td >$row[0]</td>");
+            print("<td hidden>$row[0]</td>");
             print("<td >$row[1]</td>");
             print("<td ><a href='delete.php?id=".$row[0]."'><img src='images/delete.png'></td>");
             print("<td ><a href='update.php?id=".$row[0]."'><img src='images/pen.png'></td>");
+            print("<td >$row[3]</td>");
+            print("</tr>");
+        }
+
+    ?>
+        <table border = 1>
+            <tr>
+                <td class="nnn" hidden> Номер</td>
+                <td class="nnn"> Дело</td>
+                <td class="nnn"> Удалить</td>
+                <td class="nnn"> Изменить</td>
+                <td class="nnn"> Категория</td>
+            </tr>
+            <?php
+        while($row = mysqli_fetch_row($res2))
+        {
+            print("<tr>");
+            print("<td hidden>$row[0]</td>");
+            print("<td >$row[1]</td>");
+            print("<td ><a href='delete.php?id=".$row[0]."'><img src='images/delete.png'></td>");
+            print("<td ><a href='update.php?id=".$row[0]."'><img src='images/pen.png'></td>");
+            print("<td >$row[3]</td>");
+            print("</tr>");
+        }
+
+    ?>
+    
+    <table border = 1>
+            <tr>
+                <td class="nnn" hidden> Номер</td>
+                <td class="nnn"> Дело</td>
+                <td class="nnn"> Удалить</td>
+                <td class="nnn"> Изменить</td>
+                <td class="nnn"> Категория</td>
+            </tr>
+            <?php
+        while($row = mysqli_fetch_row($res3))
+        {
+            print("<tr>");
+            print("<td hidden>$row[0]</td>");
+            print("<td >$row[1]</td>");
+            print("<td ><a href='delete.php?id=".$row[0]."'><img src='images/delete.png'></td>");
+            print("<td ><a href='update.php?id=".$row[0]."'><img src='images/pen.png'></td>");
+            print("<td >$row[3]</td>");
             print("</tr>");
         }
 
@@ -56,13 +98,5 @@ if (!empty($_SESSION["name"]))
     else{
         Header("Location: enter.php");
         print('aaa');
-    }
-    if(isset($_GET['send'])){
-        $delo=$_REQUEST['delo'];
-
-        $s="INSERT INTO `delo`(`id`, `name`) VALUES (NULL,'$delo')";
-        mysqli_query($con, $s) or die("ddd");
-    
-        header('Location: /auto/indeex.php');
     }
 ?>

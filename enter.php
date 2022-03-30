@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +7,7 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>Вход</title>
 </head>
-<body>
+<body class="light">
     <header>
         <a href="regisr.php">Регистрация на сайте</a>
     </header>
@@ -57,6 +55,7 @@
         else{
             $_SESSION["name"] = $user1["username"];
             $_SESSION["pass"] = $user1["pass"];
+            $_SESSION["id"] = $user1["id"];
             header('Location: /auto/indeex.php');
         }
     } 
