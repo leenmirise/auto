@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+    <script src="/auto/gallery/script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <img src='img/pic1.jpg' class="large"> <br>
+    <img src='img/pic2.jpg' class="im">
+    <img src='img/pic3.jpg' class="im">
+    <img src='img/pic4.jpg' class="im" >
+    <img src='img/pic5.jpg' class="im">
+    <script>
+        for(i = 1; i<document.images.length; i++)
+        {
+            document.images[i].onclick = show;
+        }
+        function show(event)
+        {
+            document.images[0].src=event.target.src;
+        }
+    </script>
+</body>
+</html>
